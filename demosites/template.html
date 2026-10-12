@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>$name | $trade_label in $area</title>
+<meta name="description" content="$name, $trade_label_lower in $area. Call $phone_display.">
+<style>
+  :root {
+    --accent: $accent;
+    --ink: #17202a;
+    --muted: #5b6673;
+    --bg: #ffffff;
+    --soft: #f3f6f9;
+    --line: #e1e7ee;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --ink: #eef2f6; --muted: #a7b2bf; --bg: #0f1419; --soft: #171e26; --line: #27313c; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--ink); background: var(--bg); }
+  .preview { background: #fff3c4; color: #5a4500; font-size: 13px; text-align: center; padding: 8px 16px; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 16px; }
+  header.hero { background: var(--accent); color: #fff; padding: 56px 0 48px; }
+  header.hero h1 { font-size: clamp(28px, 6vw, 46px); line-height: 1.1; margin: 0 0 12px; }
+  header.hero p { font-size: 18px; margin: 0 0 24px; max-width: 560px; opacity: .95; }
+  .btn { display: inline-block; background: #fff; color: var(--accent); font-weight: 700; text-decoration: none; padding: 14px 22px; border-radius: 10px; font-size: 18px; }
+  .meta { margin-top: 14px; font-size: 14px; opacity: .9; }
+  section { padding: 44px 0; }
+  section + section { border-top: 1px solid var(--line); }
+  h2 { font-size: 26px; margin: 0 0 18px; }
+  .grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .card { background: var(--soft); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; font-weight: 600; }
+  .card::before { content: "✓"; color: var(--accent); margin-right: 10px; font-weight: 800; }
+  .contact p { margin: 0 0 8px; }
+  .contact a.tel { color: var(--accent); font-weight: 700; font-size: 22px; text-decoration: none; }
+  footer { padding: 28px 0 90px; color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); }
+  .sticky { position: fixed; left: 0; right: 0; bottom: 0; padding: 10px 16px; background: var(--bg); border-top: 1px solid var(--line); display: none; }
+  .sticky a { display: block; text-align: center; background: var(--accent); color: #fff; text-decoration: none; font-weight: 700; padding: 14px; border-radius: 10px; font-size: 18px; }
+  @media (max-width: 640px) { .sticky { display: block; } }
+</style>
+</head>
+<body>
+<div class="preview">Draft preview built for $name. Not live and not yet reviewed by the business owner.</div>
+<header class="hero">
+  <div class="wrap">
+    <h1>$name</h1>
+    <p>$tagline</p>
+    <a class="btn" href="tel:$phone_tel">Call $phone_display</a>
+    <div class="meta">$trade_label · Covering $area and nearby</div>
+  </div>
+</header>
+<main>
+  <section>
+    <div class="wrap">
+      <h2>What we do</h2>
+      <div class="grid">
+$services_html
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="wrap contact">
+      <h2>Get in touch</h2>
+      <p><a class="tel" href="tel:$phone_tel">$phone_display</a></p>
+$address_html
+      <p>Call for a free quote, or tell us what you need and when.</p>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="wrap">&copy; $year $name. $area.</div>
+</footer>
+<div class="sticky"><a href="tel:$phone_tel">Call $phone_display</a></div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+{
+  "plumber": {
+    "label": "Plumber",
+    "accent": "#0b6fb8",
+    "tagline": "Fast, tidy plumbing for homes and small businesses.",
+    "services": ["Leaks and burst pipes", "Boiler and radiator work", "Bathroom and kitchen fitting", "Taps, toilets and showers", "Blocked drains", "Emergency call-outs"]
+  },
+  "electrician": {
+    "label": "Electrician",
+    "accent": "#c47a00",
+    "tagline": "Safe, reliable electrical work for homes and small businesses.",
+    "services": ["Rewires and consumer units", "Lighting and sockets", "Fault finding and repairs", "EV charger installation", "Electrical safety reports", "Emergency call-outs"]
+  },
+  "roofer": {
+    "label": "Roofer",
+    "accent": "#a33b2a",
+    "tagline": "Roof repairs and replacements, done properly.",
+    "services": ["Roof repairs", "Re-roofing", "Flat roofs", "Fascias, soffits and guttering", "Chimney and lead work", "Free quotes"]
+  },
+  "builder": {
+    "label": "Builder",
+    "accent": "#3b5b3a",
+    "tagline": "Extensions, renovations and building work from start to finish.",
+    "services": ["Extensions", "Loft conversions", "Kitchens and bathrooms", "Brickwork and plastering", "Renovations", "Free quotes"]
+  },
+  "landscaper": {
+    "label": "Landscaper",
+    "accent": "#2f7d3b",
+    "tagline": "Garden design, landscaping and maintenance.",
+    "services": ["Lawns and turfing", "Patios and paving", "Fencing and decking", "Hedge and tree work", "Garden clearance", "Regular maintenance"]
+  },
+  "cleaner": {
+    "label": "Cleaning Service",
+    "accent": "#0f8a8a",
+    "tagline": "Reliable domestic and commercial cleaning.",
+    "services": ["Regular home cleaning", "Deep cleans", "End of tenancy cleans", "Office cleaning", "Oven and carpet cleaning", "One-off cleans"]
+  },
+  "painter": {
+    "label": "Painter and Decorator",
+    "accent": "#6b3fa0",
+    "tagline": "Interior and exterior painting and decorating.",
+    "services": ["Interior painting", "Exterior painting", "Wallpapering", "Woodwork and skirting", "Commercial decorating", "Free quotes"]
+  },
+  "locksmith": {
+    "label": "Locksmith",
+    "accent": "#444b57",
+    "tagline": "Lockouts, lock changes and security upgrades.",
+    "services": ["Emergency lockouts", "Lock changes and repairs", "uPVC door and window locks", "Security upgrades", "Landlord and end-of-tenancy lock changes", "Key cutting"]
+  },
+  "generic": {
+    "label": "Local Business",
+    "accent": "#1f5eff",
+    "tagline": "Friendly, dependable service from your local team.",
+    "services": ["Free quotes", "Local and reliable", "Clear pricing", "Friendly service"]
+  }
+}
