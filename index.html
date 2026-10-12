@@ -15,8 +15,13 @@
 </head>
 <body>
 
+<!-- Ambient WebGL background + particle layer -->
+<canvas id="bg" aria-hidden="true"></canvas>
+<canvas id="fx" aria-hidden="true"></canvas>
+
 <!-- Preloader -->
 <div class="loader" id="loader" aria-hidden="true">
+  <div class="loader__cols"><i></i><i></i><i></i><i></i><i></i><i></i></div>
   <div class="loader__inner">
     <span class="loader__script">Kirstie</span>
     <span class="loader__count"><b id="loaderNum">0</b>%</span>
@@ -27,12 +32,19 @@
 <!-- Cursor -->
 <div class="cursor" id="cursor" aria-hidden="true"><span class="cursor__label"></span></div>
 
+<!-- Section HUD -->
+<aside class="hud" id="hud" aria-hidden="true">
+  <span class="hud__num" id="hudNum">01</span><span class="hud__tot">/09</span>
+  <span class="hud__name" id="hudName">Intro</span>
+</aside>
+<nav class="dots" id="dots" aria-hidden="true"></nav>
+
 <!-- Scroll progress -->
 <div class="progress" aria-hidden="true"><i id="progress"></i></div>
 
 <!-- Nav -->
 <header class="nav" id="nav">
-  <a href="#top" class="nav__logo" data-scroll data-cursor>KG<span>.</span></a>
+  <a href="#top" class="nav__logo" data-scroll data-cursor data-magnetic>KG<span>.</span></a>
   <nav class="nav__links" aria-label="Sections">
     <a href="#brands" data-scroll>Brands</a>
     <a href="#content" data-scroll>Content</a>
@@ -60,7 +72,7 @@
 <main id="top">
 
 <!-- ============ HERO ============ -->
-<section class="hero" id="hero">
+<section class="hero" id="hero" data-pal="pink" data-hud="hero">
   <img class="blob hero__blob1" src="assets/img/blob-a.webp" alt="" data-speed="-0.15" data-mouse="30">
   <img class="blob hero__blob2" src="assets/img/blob-b.webp" alt="" data-speed="0.2" data-mouse="-40">
   <div class="grain"></div>
@@ -72,8 +84,9 @@
   </div>
 
   <div class="hero__row">
-    <figure class="hero__photo" data-reveal="scale">
+    <figure class="hero__photo" data-reveal="scale" data-cursor="Hey!">
       <div class="hero__ring"></div>
+      <i class="glitch glitch--a" aria-hidden="true"></i><i class="glitch glitch--b" aria-hidden="true"></i>
       <img src="assets/img/me.webp" alt="Portrait of Kirstie Grundy">
       <svg class="hero__badge" viewBox="0 0 200 200" aria-hidden="true">
         <defs><path id="circ" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/></defs>
@@ -111,7 +124,7 @@
 </div>
 
 <!-- ============ BRANDS ============ -->
-<section class="section brands" id="brands">
+<section class="section brands" id="brands" data-pal="cyan" data-hud="brands">
   <img class="blob brands__blob" src="assets/img/blob-c.webp" alt="" data-speed="0.15">
   <div class="wrap">
     <h2 class="h-slab" data-split>Brands I have worked with</h2>
@@ -138,7 +151,7 @@
 </section>
 
 <!-- ============ CONTENT CREATION (horizontal) ============ -->
-<section class="hscroll" id="content">
+<section class="hscroll" id="content" data-pal="pink" data-hud="content">
   <img class="blob hscroll__blob" src="assets/img/blob-d.webp" alt="" data-speed="0">
   <div class="hscroll__track" id="hTrack">
 
@@ -188,7 +201,7 @@
 </section>
 
 <!-- ============ PITCH DECKS ============ -->
-<section class="section pitch" id="pitch">
+<section class="section pitch" id="pitch" data-pal="pink" data-hud="pitch">
   <img class="blob pitch__blob1" src="assets/img/blob-b.webp" alt="" data-speed="0.2">
   <img class="blob pitch__blob2" src="assets/img/blob-corner.webp" alt="" data-speed="-0.1">
   <div class="wrap">
@@ -246,7 +259,7 @@
 </section>
 
 <!-- ============ WEBSITE ============ -->
-<section class="section web" id="website">
+<section class="section web" id="website" data-pal="sun" data-hud="website">
   <img class="blob web__blob1" src="assets/img/blob-e.webp" alt="" data-speed="-0.2">
   <img class="blob web__blob2" src="assets/img/blob-a.webp" alt="" data-speed="0.15">
   <div class="wrap">
@@ -255,7 +268,7 @@
     </h2>
     <p class="lede lede--center" data-reveal>KICKS — a football-boot brand built for <b>Girls That Kick</b>.</p>
 
-    <div class="browser" data-tilt data-reveal="scale">
+    <div class="browser glare" data-tilt data-reveal="scale">
       <div class="browser__bar"><i></i><i></i><i></i><span>kicks.shop</span></div>
       <img class="browser__shot" src="assets/img/kicks-site.webp" alt="KICKS website homepage: Girls That Kick, with navigation New, Shop Now, FAQ and About Kicks and a hero boot with a Shop Now button">
       <img class="browser__shoe" src="assets/img/kicks-shoe.webp" alt="" data-speed="-0.12">
@@ -268,7 +281,7 @@
 </section>
 
 <!-- ============ PROJECTS ============ -->
-<section class="section projects" id="projects">
+<section class="section projects" id="projects" data-pal="cyan" data-hud="projects">
   <img class="blob proj__blob1" src="assets/img/blob-f.webp" alt="" data-speed="0.15">
   <img class="blob proj__blob2" src="assets/img/blob-corner.webp" alt="" data-speed="-0.1">
   <img class="folder" src="assets/img/folder.webp" alt="" data-speed="-0.25" data-spin>
@@ -277,23 +290,23 @@
     <p class="lede" data-reveal>Brand worlds, moodboards and identities — built from the first colour to the last detail.</p>
 
     <div class="bento">
-      <button class="tile tile--wide" data-lightbox="assets/img/p-kicks-identity.webp" data-cursor="View" data-reveal>
+      <button class="tile tile--wide glare" data-lightbox="assets/img/p-kicks-identity.webp" data-cursor="View" data-reveal>
         <img src="assets/img/p-kicks-identity.webp" alt="KICKS brand identity: colour palette, fonts and logo lockups">
         <span class="tile__cap"><b>KICKS</b> Brand identity</span>
       </button>
-      <button class="tile" data-lightbox="assets/img/p-hellofresh.webp" data-cursor="View" data-reveal>
+      <button class="tile glare" data-lightbox="assets/img/p-hellofresh.webp" data-cursor="View" data-reveal>
         <img src="assets/img/p-hellofresh.webp" alt="HelloFresh moodboard">
         <span class="tile__cap"><b>HelloFresh</b> Moodboard</span>
       </button>
-      <button class="tile" data-lightbox="assets/img/p-magic.webp" data-cursor="View" data-reveal>
+      <button class="tile glare" data-lightbox="assets/img/p-magic.webp" data-cursor="View" data-reveal>
         <img src="assets/img/p-magic.webp" alt="Magic Inn Motion brand board">
         <span class="tile__cap"><b>Magic Inn Motion</b> Brand board</span>
       </button>
-      <button class="tile" data-lightbox="assets/img/p-football.webp" data-cursor="View" data-reveal>
+      <button class="tile glare" data-lightbox="assets/img/p-football.webp" data-cursor="View" data-reveal>
         <img src="assets/img/p-football.webp" alt="Women's football boots and match moments moodboard">
         <span class="tile__cap"><b>Football</b> Moodboard</span>
       </button>
-      <button class="tile" data-lightbox="assets/img/p-becki.webp" data-cursor="View" data-reveal>
+      <button class="tile glare" data-lightbox="assets/img/p-becki.webp" data-cursor="View" data-reveal>
         <img src="assets/img/p-becki.webp" alt="Becki Rutherford moodboard">
         <span class="tile__cap"><b>Becki Rutherford</b> Moodboard</span>
       </button>
@@ -302,7 +315,7 @@
 </section>
 
 <!-- ============ PODCAST ============ -->
-<section class="section podcast" id="podcast">
+<section class="section podcast" id="podcast" data-pal="cyan" data-hud="podcast">
   <img class="blob pod__blob" src="assets/img/blob-c.webp" alt="" data-speed="0.2">
   <div class="wrap">
     <h2 class="h-outline h-outline--white" data-split>Podcast Guest</h2>
@@ -321,22 +334,24 @@
 </section>
 
 <!-- ============ NETFLIX TRAILER ============ -->
-<section class="section trailer" id="trailer">
+<section class="section trailer" id="trailer" data-pal="red" data-hud="trailer">
   <div class="trailer__glow"></div>
   <div class="wrap">
     <h2 class="h-outline h-outline--pink" data-split>Netflix Trailer</h2>
   </div>
   <div class="cinema" id="cinema">
     <div class="cinema__frame">
-      <img src="assets/img/trailer.webp" alt="Netflix trailer opening frame with red light ribbon">
+      <canvas id="ribbon" width="1280" height="720" role="img" aria-label="Netflix-style trailer opening: red light ribbon that expands as you scroll"><img src="assets/img/trailer.webp" alt="Netflix trailer opening frame with red light ribbon"></canvas>
       <span class="cinema__rec"><i></i> Trailer</span>
+      <span class="cinema__tc" id="tc">Scroll to scrub ▸ 00:00:00</span>
+      <span class="cinema__bar cinema__bar--t"></span><span class="cinema__bar cinema__bar--b"></span>
     </div>
   </div>
   <p class="using" data-reveal><span>Using :</span> <img src="assets/img/icon-pr.webp" alt="Adobe Premiere Pro"></p>
 </section>
 
 <!-- ============ POSTERS ============ -->
-<section class="section posters" id="posters">
+<section class="section posters" id="posters" data-pal="pink" data-hud="posters">
   <img class="blob post__blob1" src="assets/img/blob-d.webp" alt="" data-speed="0.15">
   <div class="wrap">
     <div class="posters__head">
@@ -345,19 +360,19 @@
     </div>
 
     <div class="posters__grid">
-      <button class="poster poster--wide" data-lightbox="assets/img/poster-unspoken.webp" data-cursor="View" data-tilt data-reveal>
+      <button class="poster poster--wide glare" data-lightbox="assets/img/poster-unspoken.webp" data-cursor="View" data-tilt data-reveal>
         <img src="assets/img/poster-unspoken.webp" alt="Netflix-style poster: The Unspoken Side of Football">
       </button>
-      <button class="poster poster--wide" data-lightbox="assets/img/poster-mind.webp" data-cursor="View" data-tilt data-reveal>
+      <button class="poster poster--wide glare" data-lightbox="assets/img/poster-mind.webp" data-cursor="View" data-tilt data-reveal>
         <img src="assets/img/poster-mind.webp" alt="Netflix-style poster: Mind of Metal, the inner side of gymnastics">
       </button>
-      <button class="poster poster--tall" data-lightbox="assets/img/poster-brain.webp" data-cursor="View" data-tilt data-reveal>
+      <button class="poster poster--tall glare" data-lightbox="assets/img/poster-brain.webp" data-cursor="View" data-tilt data-reveal>
         <img src="assets/img/poster-brain.webp" alt="Moneysupermarket poster: Brand Your Own Brain">
       </button>
-      <button class="poster poster--tall" data-lightbox="assets/img/poster-becki.webp" data-cursor="View" data-tilt data-reveal>
+      <button class="poster poster--tall glare" data-lightbox="assets/img/poster-becki.webp" data-cursor="View" data-tilt data-reveal>
         <img src="assets/img/poster-becki.webp" alt="Gig poster: Becki Rutherford performing at Pryzm Kingston">
       </button>
-      <button class="poster poster--shoe" data-lightbox="assets/img/kicks-shoe.webp" data-cursor="View" data-tilt data-reveal>
+      <button class="poster poster--shoe glare" data-lightbox="assets/img/kicks-shoe.webp" data-cursor="View" data-tilt data-reveal>
         <img src="assets/img/kicks-shoe.webp" alt="KICKS boot product poster">
       </button>
     </div>
@@ -376,7 +391,7 @@
   </div>
   <div class="wrap footer__row">
     <p><b>Kirstie Grundy</b> — Media Business student, Global Academy.</p>
-    <a href="#top" class="totop" data-scroll data-cursor>Back to top ↑</a>
+    <a href="#top" class="totop" data-scroll data-cursor data-magnetic>Back to top ↑</a>
   </div>
 </footer>
 
@@ -390,5 +405,6 @@
 <script src="vendor/ScrollTrigger.min.js"></script>
 <script src="vendor/lenis.min.js"></script>
 <script src="js/main.js"></script>
+<script src="js/fx.js"></script>
 </body>
 </html>

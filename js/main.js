@@ -15,6 +15,7 @@
   }
 
   gsap.registerPlugin(ScrollTrigger);
+  window.__kg = { reduce, finePointer, lenis: null };
 
   /* ---------------- Smooth scroll (Lenis) ---------------- */
   let lenis = null;
@@ -23,6 +24,7 @@
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add((t) => lenis.raf(t * 1000));
     gsap.ticker.lagSmoothing(0);
+    window.__kg.lenis = lenis;
   }
   const scrollTo = (target, opts = {}) => {
     if (lenis) lenis.scrollTo(target, { duration: 1.6, easing: (t) => 1 - Math.pow(1 - t, 4), ...opts });
@@ -109,8 +111,10 @@
 
   function intro() {
     const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
-    tl.to('#loader', { yPercent: -100, duration: 1.1, ease: 'expo.inOut' })
-      .add(() => { $('#loader').style.display = 'none'; lenis?.start(); document.body.classList.add('is-ready'); }, '>')
+    tl.to('.loader__inner', { opacity: 0, y: -40, duration: 0.5, ease: 'power3.in' })
+      .to('.loader__bar', { opacity: 0, duration: 0.3 }, '<')
+      .to('.loader__cols i', { scaleY: 0, duration: 1.1, stagger: { each: 0.07, from: 'random' }, ease: 'expo.inOut' }, '-=0.1')
+      .add(() => { $('#loader').style.display = 'none'; lenis?.start(); document.body.classList.add('is-ready'); document.dispatchEvent(new Event('kg:ready')); }, '>')
       .to('#heroScript', { opacity: 1, y: 0, rotate: -5, duration: 1.2 }, '-=0.55')
       .to(heroChars, { yPercent: 0, rotate: 0, opacity: 1, duration: 1.2, stagger: 0.045 }, '-=0.95')
       .to('#heroBy', { opacity: 1, y: 0, duration: 1 }, '-=0.7')
@@ -229,12 +233,13 @@
   gsap.ticker.add(() => {
     if (reduce) return;
     const boost = Math.min(Math.abs(velocity) * 0.45, 14);
+    const sk = Math.max(-12, Math.min(12, velocity * 0.35));
     marquees.forEach((m) => {
       const w = m.getW() || 1;
       m.x += m.dir * m.k * (0.9 + boost);
       if (m.x <= -w) m.x += w;
       if (m.x > 0) m.x -= w;
-      const tf = `translate3d(${m.x}px,0,0)`;
+      const tf = `translate3d(${m.x}px,0,0) skewX(${-sk}deg)`;
       m.tracks.forEach((t) => (t.style.transform = tf));
     });
   });
@@ -284,7 +289,7 @@
       scale: 1, rotateX: 0, borderRadius: 14, ease: 'none',
       scrollTrigger: { trigger: '.cinema', start: 'top 95%', end: 'top 25%', scrub: 0.6 },
     });
-    gsap.fromTo('.cinema__frame img', { scale: 1.5 }, {
+    gsap.fromTo('.cinema__frame canvas', { scale: 1.5 }, {
       scale: 1, ease: 'none',
       scrollTrigger: { trigger: '.cinema', start: 'top 95%', end: 'bottom 40%', scrub: 0.6 },
     });
